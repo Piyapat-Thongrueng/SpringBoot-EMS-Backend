@@ -37,11 +37,18 @@ public class EmployeeController {
         return ResponseEntity.ok(employees);
     }
 
-    // Build Update Employee REST API
+    // Build UPDATE Employee REST API
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable Long id,
                                                       @RequestBody EmployeeDto updatedEmployee) {
         EmployeeDto employeeDto = employeeService.updateEmployee(id, updatedEmployee);
         return ResponseEntity.ok(employeeDto);
+    }
+
+    // Build DELETE Employee REST API
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long employeeId) {
+        employeeService.deleteEmployee(employeeId);
+        return ResponseEntity.ok("Employee has been successfully deleted");
     }
 }
